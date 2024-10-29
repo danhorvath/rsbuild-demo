@@ -12,7 +12,7 @@ export default defineConfig({
      name: 'remote',
      filename: 'remoteEntry.js',
      exposes: {
-       'App': './src/App',
+       './Button': './src/Button',
      },
      shared: {
        ...dependencies,

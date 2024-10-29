@@ -7,12 +7,6 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  dev: {
-    assetPrefix: true,
-  },
-  output: {
-    assetPrefix: '/',
-  },
   moduleFederation: {
     options: {
       name: 'host',
