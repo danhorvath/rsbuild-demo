@@ -1,31 +1,30 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
-import { dependencies }  from './package.json';
+import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 
 export default defineConfig({
   server: {
     base: '/foo',
-    port: 3001
+    port: 3001,
   },
-  moduleFederation: {
-    options: {
-     name: 'remote',
-     filename: 'remoteEntry.js',
-     exposes: {
-       './Button': './src/Button',
-     },
-     shared: {
-       ...dependencies,
-       react: {
-         singleton: true,
-         requiredVersion: dependencies['react'],
-       },
-       'react-dom': {
-         singleton: true,
-         requiredVersion: dependencies['react-dom'],
-       },
-     },
-    }
-  },
-  plugins: [pluginReact()]
+  plugins: [
+    pluginReact(),
+    pluginModuleFederation({
+      name: 'remote',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Button': './src/Button',
+      },
+      shared: {
+        react: {
+          singleton: true,
+        },
+        'react-dom': {
+          singleton: true,
+        },
+      },
+      dts: false,
+      shareStrategy: 'loaded-first',
+    }),
+  ],
 });
