@@ -8,7 +8,12 @@ export default defineConfig({
     port: 3001,
   },
   plugins: [
-    pluginReact(),
+    pluginReact({
+      splitChunks: {
+        react: false,
+        router: false,
+      },
+    }),
     pluginModuleFederation({
       name: 'remote',
       filename: 'remoteEntry.js',
@@ -19,12 +24,15 @@ export default defineConfig({
         react: {
           singleton: true,
         },
+        "react/": {
+          singleton: true,
+        },
         'react-dom': {
           singleton: true,
         },
       },
       dts: false,
-      shareStrategy: 'loaded-first',
+      shareStrategy: 'version-first',
     }),
   ],
 });
