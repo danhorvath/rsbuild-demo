@@ -7,7 +7,12 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [
-    pluginReact(),
+    pluginReact({
+      splitChunks: {
+        react: false,
+        router: false,
+      },
+    }),
     pluginModuleFederation({
       name: 'host',
       remotes: {
@@ -17,12 +22,15 @@ export default defineConfig({
         react: {
           singleton: true,
         },
+        "react/": {
+          singleton: true,
+        },
         'react-dom': {
           singleton: true,
         },
       },
       dts: false,
-      shareStrategy: 'loaded-first',
+      shareStrategy: 'version-first',
     }),
   ],
 });
