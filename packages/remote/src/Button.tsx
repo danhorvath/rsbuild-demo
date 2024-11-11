@@ -2,9 +2,11 @@ import { useEffect, version } from 'react';
 
 const Button = () => {
   useEffect(() => {
-    console.log('Micro-frontend React version is:', version);
+    console.log('Remote React version is:', version);
   }, []);
-  return <button>Button</button>;
+  return <div>
+    <button>Button</button>;
+    </div>
 };
 
 export default Button;

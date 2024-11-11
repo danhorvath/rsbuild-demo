@@ -15,6 +15,8 @@ export default defineConfig({
       exposes: {
         './Button': './src/Button',
       },
+      remotes:{
+      },
       shared: {
         react: {
           singleton: true,
@@ -24,7 +26,6 @@ export default defineConfig({
         },
       },
       dts: false,
-      shareStrategy: 'loaded-first',
     }),
   ],
 });
