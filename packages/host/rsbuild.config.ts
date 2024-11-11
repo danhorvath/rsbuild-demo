@@ -12,6 +12,7 @@ export default defineConfig({
       name: 'host',
       remotes: {
         remote: 'remote@http://localhost:3001/foo/remoteEntry.js',
+        remote2: 'remote2@http://localhost:3002/foo/remoteEntry.js',
       },
       shared: {
         react: {
@@ -22,7 +23,6 @@ export default defineConfig({
         },
       },
       dts: false,
-      shareStrategy: 'loaded-first',
     }),
   ],
 });
